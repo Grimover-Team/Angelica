@@ -17,6 +17,7 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -30,6 +31,8 @@ public class FontStrategist {
     private static final Font[] availableFonts;
     public static final Logger LOGGER = LogManager.getLogger("Angelica");
 
+    public static File thelivanFolder = new File("thelivan");
+
     static {
         HashMap<String, Font> fontSet = new HashMap<>();
 
@@ -37,7 +40,21 @@ public class FontStrategist {
             LOGGER.warn("GraphicsEnvironment.isHeadless() returned true! Only bundled fonts will be available. This is likely a MacOS issue.");
         } else {
             // get available fonts without duplicates (250 copies of dialog.plain need not apply)
-            Font[] availableFontsDirty = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
+            Font[] availableFontsDirty = null;
+            try {
+                availableFontsDirty = new Font[] {
+                    Font.createFont(
+                        Font.TRUETYPE_FONT,
+                        new FileInputStream(
+                            new File(thelivanFolder + "/fontfiles", "mikadan.ttf")
+                        )
+                    )
+                };
+            } catch (FontFormatException | IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            HashMap<String, Font> fontSet = new HashMap<>();
             HashMultiset<String> duplicates = HashMultiset.create(); // for debugging
 
             for (Font font : availableFontsDirty) {
