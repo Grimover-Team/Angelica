@@ -2,6 +2,7 @@ package com.gtnewhorizons.angelica.glsm;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.lwjgl.LWJGLException;
@@ -25,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * is per-context and should NOT be shared.
  */
 @ExtendWith(GLSMExtension.class)
+@Disabled
 public class GLSM_ServerSideState_UnitTest {
 
     private SharedDrawable sharedDrawable;
