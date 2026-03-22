@@ -129,7 +129,6 @@ public enum Mixins implements IMixins {
             "angelica.dynamiclights.MixinEntityRenderer"
             , "angelica.dynamiclights.MixinEntity"
             , "angelica.dynamiclights.MixinWorld"
-            , "angelica.dynamiclights.MixinItemRenderer"
             , "angelica.dynamiclights.MixinEntityCreeper"
             , "angelica.dynamiclights.MixinEntityTNTPrimed"
         )
